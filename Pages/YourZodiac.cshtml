@@ -1,0 +1,32 @@
+﻿@page
+@model Lab1.Pages.YourZodiacModel
+@{
+    ViewData["Title"] = "Your Zodiac Page";
+    
+}
+
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label for="year" class="control-label"></label>
+            <input type='number' id="year" name="year" class="form-control"
+            value='@(ViewData["Year"] != null ? ViewData["Year"]!.ToString() : "")'/>
+        </div>
+        <div class="mx-auto my-3"> 
+            <button type="submit" class="btn btn-primary">Get your Zodiac</button>
+            <a asp-action="" class="btn btn-success">Clear</a>
+        </div>
+    </form>
+</div>
+@if(ViewData["Error"] != null) {
+    <div class="alert alert-danger card mx-auto" style="width: 18rem;">
+        <p>@ViewData["Error"]</p>
+    </div>
+}
+@if(!string.IsNullOrEmpty(ViewData["YZ"] as string)) {
+    string zodiacImg = (ViewData["YZ"] + ".png").ToLower();
+    <div class="alert alert-success card mx-auto" style="width: 18rem;">
+        <p>Your zodiac sign is <strong>@ViewData["YZ"]</strong></p>
+        <img src='/images/@zodiacImg' alt='@ViewData["YZ"]' />
+    </div>
+}
