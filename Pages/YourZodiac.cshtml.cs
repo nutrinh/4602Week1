@@ -17,7 +17,7 @@ namespace Lab1.Pages
         public void OnPost() {
             if(int.TryParse(Request.Form["year"], out int inputYear)) {
                 ViewData["Year"] = inputYear;
-                if(inputYear < 1900 || inputYear > DateTime.Now.Year)
+                if(inputYear < 1900 || inputYear > (DateTime.Now.Year + 1))
                 {
                     ViewData["Error"] = "Year must be between 1900 and the next. Try again";
                 }
